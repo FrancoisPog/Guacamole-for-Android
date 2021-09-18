@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Quiz</string>
+    <string name="vrai">Vrai</string>
+    <string name="faux">Faux</string>
+    <string name="suivant">Suivant</string>
+    <string name="loading">Loading…</string>
+</resources>
