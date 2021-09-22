@@ -1,7 +1,13 @@
 <resources>
-    <string name="app_name">Quiz</string>
-    <string name="vrai">Vrai</string>
-    <string name="faux">Faux</string>
-    <string name="suivant">Suivant</string>
+    <string name="app_name" translatable="false">Gucamole For Android</string>
+    <string name="vrai">True</string>
+    <string name="faux">False</string>
+    <string name="suivant">Next</string>
     <string name="loading">Loading…</string>
+    <string name="play">Play</string>
+    <string name="votre_pseudo">Username</string>
+    <string name="guacamole_for_android" translatable="false">Guacamole</string>
+    <string name="bad_answers">Bad answers...</string>
+    <string name="good_answer">Good answer !</string>
+    <string name="exit">Exit</string>
 </resources>

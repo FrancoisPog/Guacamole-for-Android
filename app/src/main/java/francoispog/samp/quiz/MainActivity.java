@@ -3,6 +3,7 @@ package francoispog.samp.quiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -28,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView questionAnswer;
+    private TextView scoreView;
+    private Button exitButton;
 
     enum State {
         LOADING,
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_BUTTONS = 4;
     private Button[] buttons;
     private TextView questionLabel;
+    private int score;
+    private int questionCount;
 
 
     @Override
@@ -49,11 +55,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        score = 0;
+        questionCount = 0;
+
+        scoreView = (TextView) findViewById(R.id.score);
+
         questionLabel = (TextView) findViewById(R.id.question_label);
         questionAnswer = (TextView) findViewById(R.id.question_good_answer);
 
         nextButton = (Button) findViewById(R.id.button_next);
         nextButton.setOnClickListener(e -> nextQuestion());
+
+        exitButton = (Button) findViewById(R.id.button_exit);
+
+        exitButton.setOnClickListener(this::exit);
 
         buttons = new Button[NUMBER_OF_BUTTONS];
         for (int i = 0; i < 4; ++i) {
@@ -63,8 +78,21 @@ public class MainActivity extends AppCompatActivity {
             buttons[i].setOnClickListener(e -> this.onClickAnswer(finalI));
         }
 
+        Intent intent = getIntent();
+        String pseudo = intent.getStringExtra("pseudo");
+
+        TextView textView = (TextView) findViewById(R.id.show_pseudo);
+
+        textView.setText(pseudo);
 
         nextQuestion();
+    }
+
+    private void exit(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("score", score + "/" + questionCount);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     protected void onClickAnswer(int buttonNumber) {
@@ -72,9 +100,12 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        String toastText = "Mauvaise réponse...";
+        questionCount++;
+
+        String toastText = getString(R.string.bad_answers);
         if (buttonNumber == this.currentQuestion.getGoodAnswer()) {
-            toastText = "Bonne réponse !";
+            score++;
+            toastText = getString(R.string.good_answer);
         }
         Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
@@ -97,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void render() {
-        questionAnswer.setVisibility(View.VISIBLE);
         questionAnswer.setVisibility(View.INVISIBLE);
+
+        scoreView.setText(score + "/" + questionCount);
 
         if (this.state == State.LOADING) {
             questionLabel.setText(R.string.loading);

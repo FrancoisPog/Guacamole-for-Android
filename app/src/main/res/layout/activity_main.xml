@@ -9,6 +9,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/show_pseudo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Pseudo"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="4/7"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -34,11 +59,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="30dp"
                 android:padding="5dp"
                 android:text="@string/loading"
                 android:textAlignment="center"
-                android:textSize="30sp"
-                android:layout_marginTop="30dp"/>
+                android:textSize="30sp" />
 
 
         </LinearLayout>
@@ -112,6 +137,13 @@
                 android:layout_height="wrap_content"
                 android:enabled="false"
                 android:text="@string/suivant" />
+
+            <Button
+                android:id="@+id/button_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exit" />
+
         </LinearLayout>
 
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vrai">Vrai</string>
+    <string name="faux">Faux</string>
+    <string name="suivant">Suivant</string>
+    <string name="loading">Chargement…</string>
+    <string name="play">Jouer</string>
+    <string name="votre_pseudo">Pseudo</string>
+</resources>
